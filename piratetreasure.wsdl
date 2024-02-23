@@ -1,13 +1,11 @@
-<definitions name="PirateTreasureService"
-             targetNamespace="http://example.com/piratetreasure"
-             xmlns="http://schemas.xmlsoap.org/wsdl/"
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
              xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-             xmlns:tns="http://example.com/piratetreasure"
-             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+             targetNamespace="http://localhost:8000/tresorService">
 
     <message name="TreasureRequest">
         <part name="pirateName" type="xsd:string"/>
     </message>
+    
     <message name="TreasureResponse">
         <part name="latitude" type="xsd:float"/>
         <part name="longitude" type="xsd:float"/>
@@ -38,5 +36,4 @@
             <soap:address location="http://localhost:8000/piratetreasure/service.php"/>
         </port>
     </service>
-
 </definitions>
