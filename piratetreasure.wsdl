@@ -1,0 +1,42 @@
+<definitions name="PirateTreasureService"
+             targetNamespace="http://example.com/piratetreasure"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://example.com/piratetreasure"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+    <message name="TreasureRequest">
+        <part name="pirateName" type="xsd:string"/>
+    </message>
+    <message name="TreasureResponse">
+        <part name="latitude" type="xsd:float"/>
+        <part name="longitude" type="xsd:float"/>
+    </message>
+
+    <portType name="PirateTreasurePortType">
+        <operation name="trouverTresor">
+            <input message="tns:TreasureRequest"/>
+            <output message="tns:TreasureResponse"/>
+        </operation>
+    </portType>
+
+ <binding name="PirateTreasureBinding" type="tns:PirateTreasurePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="trouverTresor">
+        <soap:operation soapAction="http://localhost:8000/piratetreasure/trouverTresor"/>
+        <input>
+            <soap:body use="literal"/>
+        </input>
+        <output>
+            <soap:body use="literal"/>
+        </output>
+    </operation>
+</binding>
+
+    <service name="PirateTreasureService">
+        <port name="PirateTreasurePort" binding="tns:PirateTreasureBinding">
+            <soap:address location="http://localhost:8000/piratetreasure/service.php"/>
+        </port>
+    </service>
+
+</definitions>
